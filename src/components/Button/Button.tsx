@@ -1,6 +1,7 @@
-import React, {FC, ReactElement} from "react";
-import styles from "./Button.module.scss";
+import React, { FC, ReactElement } from "react";
+import classNames from "classnames";
 
+import styles from "./Button.module.scss";
 
 export enum ButtonTypes {
   Primary = "primary",
@@ -12,15 +13,22 @@ type ButtonProps = {
   type: ButtonTypes;
   title: string | ReactElement;
   onClick: () => void;
+  disabled?: boolean;
+  className?: string;
+};
 
-
-}
-
-
-
-const Button: FC<ButtonProps> = ({type, title, onClick}) => {
-    const buttonStyles = styles[type]
-    return <div onClick = {onClick} className = {buttonStyles}> {title}</div>
-}
+const Button: FC<ButtonProps> = ({ type, title, onClick, disabled, className }) => {
+  const buttonStyle = styles[type];
+  return (
+    <div
+      onClick={!disabled ? onClick : undefined}
+      className={classNames(buttonStyle, className, {
+        [styles.disabled]: disabled,
+      })}
+    >
+      {title}
+    </div>
+  );
+};
 
 export default Button;
