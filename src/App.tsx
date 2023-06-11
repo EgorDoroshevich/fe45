@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import SelectedPost from "./pages/SelectedPost";
+import CardsList from "./components/CardsList/CardsList";
+import Home from "./pages/Home/Home";
+import SignUp from "./pages/SignUp";
+import {ThemeProvider} from "./context/Theme";
+import {Theme} from './@types';
+import ThemeSwitcher from "./components/ThemeSwitcher";
+
+const App = () => {
+  const [themeValue, setThemeValue] = useState<Theme>(Theme.Light);
+
+  const onChangeTheme = (value: Theme) => () => {
+  setThemeValue(value);
 }
+
+  return (
+
+    <ThemeProvider themeValue = {themeValue} onChangeTheme = {onChangeTheme}> 
+   <SignUp/>
+   <ThemeSwitcher/>
+    </ThemeProvider>
+
+  );
+};
 
 export default App;
