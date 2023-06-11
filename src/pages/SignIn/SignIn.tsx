@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 
-import FormPagesContainer from "../../components/FormPagesContainer";
+import FormPagesContainer from "src/components/FormPagesContainer";
 import styles from "./SignIn.module.scss";
-import Input from "../../components/Input";
+import Input from "src/components/Input";
+import classNames from "classnames";
+import { useThemeContext } from "src/context/Theme";
+import { Theme } from "src/@types";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const {themeValue} = useThemeContext();
   return (
     <FormPagesContainer
       title={"Sign In"}
       btnTitle={"Sign In"}
       onSubmit={() => {}}
       additionalInfo={
-        <div className={styles.additionalInfo}>
+        <div className={classNames(styles.additionalInfo, {[styles.darkAdditionalInfo]: themeValue === Theme.Dark})}>
           {"Don’t have an account?"}
           <span className={styles.signUp}>Sign Up</span>
         </div>

@@ -1,7 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import classNames from "classnames";
 
 import styles from "./Title.module.scss";
+import { useThemeContext } from "src/context/Theme";
+import { Theme } from "src/@types";
 
 type TitleType = {
   title: string;
@@ -9,7 +11,13 @@ type TitleType = {
 };
 
 const Title: FC<TitleType> = ({ title, className }) => {
-  return <div className={classNames(styles.title, className)}>{title}</div>;
+  const {themeValue} = useThemeContext();
+  return (
+  <div 
+  className={classNames(styles.title, className, {
+    [styles.darkTitle]: themeValue === Theme.Dark,
+  })}>{title}</div>
+  );
 };
 
 export default Title;

@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 
-import Title from "../../components/Title";
-import CardsList from "../../components/CardsList";
-import { PostsList, TabsTypes } from "../../@types";
+import Title from "src/components/Title";
+import CardsList from "src/components/CardsList";
+import { PostsList, TabsTypes } from "src/@types";
 
 import styles from "./Home.module.scss";
-import TabsList from "../../components/TabsList";
+import TabsList from "src/components/TabsList";
 
 const MOCK_ARRAY = [
     {

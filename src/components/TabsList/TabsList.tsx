@@ -3,7 +3,7 @@ import Tab from "../Tab";
 import classNames from "classnames";
 
 import styles from "./TabsList.module.scss";
-import { TabsListType, TabsTypes } from "../../@types";
+import { TabsListType, TabsTypes } from "src/@types";
 
 type TabsListProps = {
   tabsList: TabsListType;

@@ -30,3 +30,9 @@
     color: $primary;
   }
 }
+.darkAdditionalInfo{
+  color: $medium;
+  .signIn{
+    color: $primary-secondary;
+  }
+}

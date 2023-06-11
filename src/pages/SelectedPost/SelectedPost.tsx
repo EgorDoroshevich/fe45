@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import Title from "../../components/Title/Title";
+import Title from "src/components/Title/Title";
 
 import styles from "./SelectedPost.module.scss";
-import { BookmarkIcon, DislikeIcon, LikeIcon } from "../../components/assets/icons";
+import { BookmarkIcon, DislikeIcon, LikeIcon } from "src/components/assets/icons";
 
 type SelectedPostProps = {
   id: number;
