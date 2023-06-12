@@ -1,0 +1,25 @@
+@import 'src/styles/colors'; 
+.container {
+    display: flex;
+    border-top: 1px solid $light;
+    max-height: 80px;
+    
+}
+.button{
+    &:hover{
+        cursor: pointer;
+        svg > path {
+            fill: $primary;
+        }
+    }
+    padding: 28px 47px;
+    &:first-child{
+        border-right: 1px solid $light;
+    }
+}
+
+.activeButton{
+    svg > path {
+        fill:$secondary;
+    }
+}
