@@ -9,19 +9,19 @@ export enum PostCardSize {
   Small = "small",
 }
 
-type PostCardProps = {
+  type PostCardProps = {
   id: number;
   image: string;
   text?: string;
   date: string;
   lesson_num: number;
   title: string;
-  author?: number;
-  size: PostCardSize;
+  type:PostCardSize;
+  onMoreClick?: () => void;
 };
 
-const PostCard: FC<PostCardProps> = ({ id, image, title, text, date, lesson_num, author, size }) => {
-  const postCardStyle = styles[size];
+const PostCard: FC<PostCardProps> = ({image, title, text, date, type, onMoreClick}) => {
+  const postCardStyle = styles[type];
   return (
     <div className={classNames(postCardStyle)}>
       <div className={styles.content}>
@@ -47,9 +47,9 @@ const PostCard: FC<PostCardProps> = ({ id, image, title, text, date, lesson_num,
           <div className={styles.icon}>
             <BookmarkIcon />
           </div>
-          <div className={styles.icon}>
+         { onMoreClick && (<div className={styles.icon} onClick = {onMoreClick}>
             <MoreMenuIcon />
-          </div>
+          </div>)}
         </div>
       </div>
     </div>

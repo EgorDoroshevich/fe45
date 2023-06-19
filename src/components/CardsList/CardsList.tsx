@@ -1,21 +1,36 @@
 import React, { FC } from "react";
-import { PostsList } from "src/@types";
+import { useDispatch } from "react-redux";
+import { Post, PostsList } from "src/@types";
+import { setSelectedPost, setSelectedPostModalOpened } from "src/redux/reducers/postSlice";
 import PostCard, { PostCardSize } from "../PostCard";
 import styles from "./CardsList.module.scss";
+
 
 type CardsListProps = {
   cardsList: PostsList;
 };
 
 const CardsList: FC<CardsListProps> = ({ cardsList }) => {
+const dispatch = useDispatch();
+const onMoreClick = (post: Post) => () => {
+dispatch(setSelectedPostModalOpened(true));
+dispatch(setSelectedPost(post));
+}
+
+
   return cardsList.length ? (
     <div className={styles.cardListcontainer}>
       <div>
-        <PostCard size={PostCardSize.Large} {...cardsList[0]} />
+        <PostCard 
+        type={PostCardSize.Large} {...cardsList[0]} 
+        onMoreClick = {onMoreClick(cardsList[0])} />
         <div className={styles.medium}>
           {cardsList.map((el, idx) => {
             if (idx >= 1 && idx <= 4) {
-              return <PostCard key={el.id} size={PostCardSize.Medium} {...el} />;
+              return <PostCard 
+              key={el.id} 
+              type={PostCardSize.Medium} {...el} 
+              onMoreClick = {onMoreClick(el)}/>;
             }
           })}
         </div>
@@ -23,7 +38,10 @@ const CardsList: FC<CardsListProps> = ({ cardsList }) => {
       <div className={styles.small}>
         {cardsList.map((el, idx) => {
           if (idx >= 5 && idx <= 10) {
-            return <PostCard key={el.id} size={PostCardSize.Small} {...el} />;
+            return <PostCard 
+            key={el.id}
+            type={PostCardSize.Small} {...el}
+            onMoreClick = {onMoreClick(el)} />;
           }
         })}
       </div>
